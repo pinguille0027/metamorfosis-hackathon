@@ -1,22 +1,100 @@
+---
+import Header from "../components/Header.astro";
+import PrimaryNav from "../components/PrimaryNav.astro";
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hant">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Chiron+Hei+HK:ital,wght@0,200..900;1,200..900&display=swap"
+			rel="stylesheet"
+		/>
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Basics</title>
 	</head>
 	<body>
+		<Header />
+		<PrimaryNav />
 		<slot />
 	</body>
 </html>
 
-<style>
+<style is:global>
+	:root {
+		--bg-color: 255, 225, 225;
+		--primary-color: 80, 11, 16;
+		--secondary-color: 242, 15, 37;
+		--browser-visited-link-color: 85, 26, 139;
+	}
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+		color: rgb(var(--primary-color));
+		background-color: rgb(var(--bg-color));
+		font-family: "Chiron Hei HK", "sans-serif";
+		font-optical-sizing: auto;
+		font-weight: 400;
+		font-style: normal;
+		line-height: 1.15rem;
+	}
+	body {
+		width: calc((100vw / 48) * 47);
+		margin-inline: auto;
+		border: 1px, solid, blue;
+	}
+	@keyframes neonColorCycle {
+		0% {
+			color: #aa00ff;
+			text-shadow:
+				0 0 5px #cc00ff,
+				0 0 10px #cc00ff,
+				0 0 20px #ff00ff,
+				0 0 40px #ff33ff;
+		}
+		25% {
+			color: #0055ff;
+			text-shadow:
+				0 0 5px #0077ff,
+				0 0 10px #3399ff,
+				0 0 20px #66ccff,
+				0 0 40px #99ddff;
+		}
+		50% {
+			color: #00cc66;
+			text-shadow:
+				0 0 5px #00e68a,
+				0 0 10px #33ff99,
+				0 0 20px #66ffc2,
+				0 0 40px #99ffe0;
+		}
+		75% {
+			color: #ffaa00;
+			text-shadow:
+				0 0 5px #ffbb33,
+				0 0 10px #ffcc66,
+				0 0 20px #ffdd99,
+				0 0 40px #ffeecc;
+		}
+		100% {
+			color: #aa00ff;
+			text-shadow:
+				0 0 5px #cc00ff,
+				0 0 10px #cc00ff,
+				0 0 20px #ff00ff,
+				0 0 40px #ff33ff;
+		}
+	}
+
+	.neon-changing {
+		font-weight: bold;
+		animation: neonColorCycle 0.75s infinite ease-in-out;
 	}
 </style>
