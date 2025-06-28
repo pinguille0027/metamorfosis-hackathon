@@ -1,0 +1,35 @@
+---
+interface youtubeOption {
+    option: string;
+    value: string;
+}
+const youtubeOptions: youtubeOption[] = [
+    { option: "autoplay", value: "1" },
+    { option: "controls", value: "0" },
+    { option: "disablekb", value: "1" },
+    { option: "loop", value: "1" },
+    { option: "mute", value: "1" },
+];
+interface Props {
+    height?: number;
+    width?: number;
+    videoId: string;
+}
+const printOptions = (options: youtubeOption[]) => {
+    let optionsString = "";
+    options.forEach((option) => {
+        optionsString += `${option.option}=${option.value}&`;
+    });
+    return optionsString;
+};
+const { height = 180, width = 320, videoId } = Astro.props;
+---
+
+<iframe
+    width={`${width}rem`}
+    height={`${height}rem`}
+    src=`https://www.youtube.com/embed/${videoId}?${printOptions(youtubeOptions)}`
+    title="YouTube video player"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen/>
