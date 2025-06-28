@@ -1,0 +1,34 @@
+---
+interface tiktokOption {
+    option:string
+    value: string
+}
+const tiktokOptions:tiktokOption[]=[
+    {option:"play_button", value:"0"},
+    {option:"progress_bar", value:"0"},
+    {option:"fullscreen_button", value:"0"},
+    {option:"timestamp", value:"0"},
+    {option:"loop", value:"1"},
+    {option:"autoplay", value:"1"},
+    {option:"music_info", value:"0"},
+    {option:"description", value:"0"},
+    {option:"rel", value:"0"},
+    {option:"native_context_menu", value:"0"},
+    {option:"closed_caption", value:"0"},
+]
+interface Props {
+    height?:number
+    width?:number
+    videoId:string
+}
+const printOptions = (options:tiktokOption[]) =>{
+    let optionsString=""
+    options.forEach((option)=>{
+        optionsString+=`${option.option}=${option.value}&`
+    })
+    return optionsString
+}
+const {height=240, width=120, videoId} = Astro.props
+---
+
+<iframe src=`https://www.tiktok.com/player/v1/${videoId}?${printOptions(tiktokOptions)}` height={`${height}rem`} width={`${width}rem`}/>
