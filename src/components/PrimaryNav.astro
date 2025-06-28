@@ -1,0 +1,88 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import SearchBar from "./React/SearchBar.tsx";
+
+// Obtén todas las entradas de una colección.
+// Requiere el nombre de la colección como argumento.
+// Ejemplo: recupera `src/content/blog/**`
+
+const allProducts = await getCollection("products");
+const productLinks = allProducts.map((p) => ({
+    title: p.data.title,
+    href: `/products/${p.slug}`,
+}));
+// Obtén una única entrada de colleción.
+// Requiere el nombre de la colección y también
+// el `slug` de la entrada (colecciones de contenido) o `id` (colecciones de datos)
+// Ejemplo: recupera `src/content/authors/grace-hopper.json`
+
+const links = [
+    { chino: "產品", esp: "productos", href: "/products" },
+    { chino: "聯絡方式", esp: "contacto" },
+    { chino: "我們的工廠", esp: "nuestra fábrica" },
+    { chino: "傳統絲綢", esp: "seda tradicional" },
+    { chino: "人造絲綢", esp: "seda artificial" },
+    { chino: "其他織物", esp: "otros tejidos" },
+    { chino: "行業新聞", esp: "noticias del sector" },
+    { chino: "團隊", esp: "equipo" },
+    { chino: "促銷活動", esp: "promociones" },
+    { chino: "報關管理", esp: "gestión aduanera" },
+    { chino: "供應商", esp: "proveedores" },
+    { chino: "主要客戶", esp: "principales clientes" },
+    { chino: "社會公益", esp: "obra social" },
+    { chino: "創新", esp: "innovación" },
+    { chino: "絲綢的歷史", esp: "historia de la seda" },
+    { chino: "漢服", esp: "hanfú" },
+    { chino: "現代設計", esp: "diseños modernos" },
+    { chino: "印花圖案", esp: "estampados" },
+];
+---
+
+<nav>
+    <div class="SearchBar"><SearchBar client:load products={productLinks} /></div>
+
+    {
+        links.map((link) => {
+            return (
+                <a title={link.esp} href={link.href ?? ""}>
+                    {link.chino}
+                </a>
+            );
+        })
+    }
+</nav>
+
+<style>
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+        padding-block: 0.5rem;
+        padding-inline: 1rem;
+        border-radius: 0.25rem;
+        border: 0.025rem solid rgb(var(--secondary-color));
+        background-image: linear-gradient(
+            to bottom,
+            rgb(var(--secondary-color), 0.35),
+            rgb(var(--secondary-color), 0.45),
+            rgb(var(--secondary-color), 0.55),
+            rgb(var(--secondary-color), 0.65),
+            rgb(var(--secondary-color), 0.75)
+        );
+    }
+    .SearchBar{
+        margin-inline-end: 2rem;
+    }
+    a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        border-bottom: 0.05rem solid white;
+        height: fit-content;
+    }
+    a:visited {
+        color: rgb(var(--browser-visited-link-color));
+        border-color: rgb(var(--browser-visited-link-color));
+    }
+</style>
