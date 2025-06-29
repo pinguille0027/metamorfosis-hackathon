@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import "./ReactStyles/TikTokCarousel.css";
 type VideoType = {videoId: string, duration?:number}
-export default function TikTokCarousel({ videos, height = 30, width = 15 }:{videos:VideoType[], height?:number, width?:number}) {
+export default function TikTokCarousel({ videos, height = 30, width =(height/2) }:{videos:VideoType[], height?:number, width?:number}) {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [animating, setAnimating] = useState(false);
-  console.log(videos)
 
   useEffect(() => {
     const duration = videos[currentIndex].duration ?? 15;

@@ -1,0 +1,112 @@
+---
+import TikTokCarousel from "./React/TiktokCarrusel";
+
+const linksPrendas = [
+    { chino: "襯衫", esp: "camisa", href: "https://alibaba.es" },
+    { chino: "裙子", esp: "falda" },
+    { chino: "褲子", esp: "pantalones" },
+    { chino: "洋裝", esp: "vestido" },
+    { chino: "外套", esp: "chaqueta" },
+    { chino: "大衣", esp: "abrigo" },
+    { chino: "T 恤", esp: "camiseta" },
+    { chino: "毛衣", esp: "jersey/suéter" },
+    { chino: "內衣", esp: "ropa interior" },
+    { chino: "睡衣", esp: "pijama" },
+    { chino: "圍巾", esp: "bufanda" },
+    { chino: "帽子", esp: "sombrero/gorra" },
+    { chino: "手套", esp: "guantes" },
+    { chino: "襪子", esp: "calcetines" },
+    { chino: "短褲", esp: "pantalones cortos" },
+    { chino: "泳衣", esp: "traje de baño" },
+    { chino: "高跟鞋", esp: "tacones" },
+    { chino: "靴子", esp: "botas" },
+    { chino: "運動鞋", esp: "zapatillas deportivas" },
+    { chino: "拖鞋", esp: "sandalias/zapatillas" },
+];
+const ads = [
+    { videoId: "7499817082905758984", duration: 13 },
+    { videoId: "7442519296137350431", duration: 24 },
+    { videoId: "7503543035922304286", duration: 18 },
+];
+---
+
+<aside>
+    <div class="prendasContainer">
+        <TikTokCarousel videos={ads} height={20} client:load />
+        
+        <ul>
+            {
+                linksPrendas.map((link) => {
+                    return (
+                        <li>
+                            <a title={link.esp} href={link.href ?? ""}>
+                                {link.chino}
+                            </a>
+                        </li>
+                    );
+                })
+            }
+        </ul>
+        <div class="silkContainer">
+            <span>各個時代 的 設計！</span>
+        </div>
+    </div>
+</aside>
+<style>
+    aside{
+        border: 1px solid cyan;
+    }
+    .prendasContainer{
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+ul{
+    grid-row: span 3;
+    padding-inline: 0.5rem;
+}
+li {
+  list-style: none;
+  display: flex; /* Esto asegura alineación horizontal */
+  align-items: center; /* Alinea verticalmente */
+  gap: 0.15rem; /* Espacio entre estrella y texto */
+  padding-block: 0.05rem;
+}
+li::before {
+  content: '';
+  display: inline-block;
+  height: 1.25rem;
+  width: 1.25rem;
+  background-image: url("/estrellabrillibrilli.gif");
+  background-size: cover; /* Asegura que la imagen se ajuste al tamaño del pseudo-elemento */
+  background-repeat: no-repeat;
+  margin-right: 0.5rem; /* Espacio entre la estrella y el texto */
+  vertical-align: middle;
+}
+.silkContainer {
+  margin-top: 0.5rem;
+  line-height: 1.5rem;
+  border-radius: 1rem;
+  color: gold;
+  font-size: 1.5rem;
+  padding-inline: 0.75rem;
+  padding-block: 2rem;
+  text-align: center;
+  background: linear-gradient(115deg, #9e0606, #ff0000, #b22222, #f24628);
+  background-size: 300% 300%;
+  animation: silkFlow 2s ease-in-out infinite;
+  border: 0.25rem solid darkgoldenrod;
+  
+}
+
+@keyframes silkFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+</style>

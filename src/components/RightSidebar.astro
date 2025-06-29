@@ -1,0 +1,23 @@
+---
+import TikTokCarousel from "./React/TiktokCarrusel";
+const ads = [
+    { videoId: "7354138412443651371", duration: 15 },
+    { videoId: "7125156750017318150", duration: 10 },
+    { videoId: "7424257912261856520", duration: 10 },
+    { videoId: "7268558280841121031", duration: 13 },
+];
+---
+
+<aside>
+    <div>
+    <TikTokCarousel videos={ads}>
+
+    </div>
+</aside>
+<style>
+    div{
+        padding: 0.1rem;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+</style>

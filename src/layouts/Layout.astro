@@ -1,6 +1,8 @@
 ---
 import Header from "../components/Header.astro";
+import LeftSidebar from "../components/LeftSidebar.astro";
 import PrimaryNav from "../components/PrimaryNav.astro";
+import RightSidebar from "../components/RightSidebar.astro";
 ---
 
 <!doctype html>
@@ -21,7 +23,11 @@ import PrimaryNav from "../components/PrimaryNav.astro";
 	<body>
 		<Header />
 		<PrimaryNav />
-		<slot />
+		<div class="main">
+			<LeftSidebar />
+			<slot />
+			<RightSidebar />
+		</div>
 	</body>
 </html>
 
@@ -50,6 +56,23 @@ import PrimaryNav from "../components/PrimaryNav.astro";
 		margin-inline: auto;
 		border: 1px, solid, blue;
 	}
+	.main {
+		display: grid;
+		grid-template-columns: 20% 60% 20%;
+	}
+	a {
+		color: white;
+		text-decoration: none;
+		display: block;
+		border-bottom: 0.05rem solid white;
+		height: fit-content;
+		width: fit-content;
+	}
+	a:visited {
+		color: rgb(var(--browser-visited-link-color));
+		border-color: rgb(var(--browser-visited-link-color));
+	}
+
 	@keyframes neonColorCycle {
 		0% {
 			color: #aa00ff;
