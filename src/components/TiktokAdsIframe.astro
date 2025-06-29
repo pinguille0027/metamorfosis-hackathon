@@ -28,7 +28,20 @@ const printOptions = (options:tiktokOption[]) =>{
     })
     return optionsString
 }
-const {height=240, width=120, videoId} = Astro.props
+const {height=15, width=7.5, videoId} = Astro.props
 ---
-
-<iframe src=`https://www.tiktok.com/player/v1/${videoId}?${printOptions(tiktokOptions)}` height={`${height}rem`} width={`${width}rem`}/>
+<div style={{ height: `${height}rem`, width: `${width}rem` }}>
+<iframe src=`https://www.tiktok.com/player/v1/${videoId}?${printOptions(tiktokOptions)}`/>
+</div>
+<style>
+    div{
+        position: relative;
+    }
+    iframe{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+</style>

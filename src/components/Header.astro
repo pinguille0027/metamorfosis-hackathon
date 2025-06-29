@@ -36,11 +36,11 @@ import TiktokAdsIframe from "./TiktokAdsIframe.astro";
         </div>
         <div class="slogan neon-changing">創新養蠶人</div>
     </div>
-    <div>
+    <div class="ad">
         <TiktokAdsIframe
             videoId="7316253627415284998"
-            height={180}
-            width={90}
+            height={10}
+            width={5}
         />
         <span class="caption">細緻柔韌</span>
     </div>
@@ -87,6 +87,10 @@ import TiktokAdsIframe from "./TiktokAdsIframe.astro";
         font-weight: 700;
         color: rgb(var(--secondary-color));
         margin-top: 1.5rem;
+    }
+    .ad{
+        display: flex;
+        gap: 0.25rem;
     }
     .caption {
         writing-mode: vertical-rl;
