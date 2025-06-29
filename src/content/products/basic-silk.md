@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/Layout.astro
 slug: basic-silk
 title: Astro en pocas palabras
 author: Agustin Mulet
